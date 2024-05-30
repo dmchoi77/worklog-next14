@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Pretendard Variable !important;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+}
+
+textarea, input {
+  outline-color: #303030cd;
+}
