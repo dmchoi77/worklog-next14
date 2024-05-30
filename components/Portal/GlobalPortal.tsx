@@ -24,11 +24,14 @@ const PortalProvider = ({ children }: PortalProviderProps) => {
   );
 };
 
+/**
+ * 원래 사용하던 코드이고 children 타입이 ReactNode라는데 왜 타입 에러 발생하는지 모르겠음
+ */
 interface PortalConsumerProps {
   children: ReactNode;
 }
 
-const PortalConsumer = ({ children }: PortalConsumerProps) => {
+const PortalConsumer = ({ children }: any) => {
   return (
     <PortalContext.Consumer>
       {(portalContainerRef) => {
