@@ -16,6 +16,19 @@ export default function Layout({
 }>) {
   return (
     <html lang='en'>
+      <head suppressHydrationWarning={true}>
+        <link
+          rel='stylesheet'
+          href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css'
+        />
+        <link
+          rel='preload'
+          as='style'
+          crossOrigin='anonymous'
+          href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css'
+        />
+        <link rel='preconnect' href='https://cdn.jsdelivr.net' crossOrigin='anonymous' />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

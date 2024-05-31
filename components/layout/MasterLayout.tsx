@@ -1,6 +1,12 @@
 'use client';
 import { useEffect } from 'react';
 
+import { MasterLayoutContainer, PanelRightWrapper, PanelWrapper } from './layout.css';
+import Header from '../header/Header';
+import MobileAppBar from '../mobileAppBar/MobileAppBar';
+import PanelLeft from '../panel/PanelLeft';
+import CustomSnackbar from '../snackbar/Snackbar';
+
 import { ACCESS_TOKEN } from '~/constants/cookie';
 import { useUserInfoState } from '~/stores/useUserInfoStore';
 import { UserAgent } from '~/types/components/component.types';
@@ -8,8 +14,8 @@ import { getCookie } from '~/utils/cookie';
 import { decodeJWT } from '~/utils/decodeJWT';
 
 interface IProps {
-  children: JSX.Element | JSX.Element[];
-  userAgent: UserAgent;
+  children: React.ReactNode;
+  userAgent?: UserAgent;
 }
 
 const MasterLayout = ({ children, userAgent }: IProps) => {
@@ -32,43 +38,17 @@ const MasterLayout = ({ children, userAgent }: IProps) => {
 
   const isMobile = userAgent === 'mobile';
   return (
-    <MasterLayoutContainer>
-      <div
-        className='panel-container'
-        css={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          height: '100vh',
-        }}
-      >
+    <div className={MasterLayoutContainer}>
+      <div className={PanelWrapper}>
         <PanelLeft />
-        <PanelRightContainer>
+        <div className={PanelRightWrapper}>
           {isMobile ? <MobileAppBar /> : <Header />}
           {children}
-        </PanelRightContainer>
+        </div>
       </div>
       <CustomSnackbar />
-    </MasterLayoutContainer>
+    </div>
   );
 };
 
 export default MasterLayout;
-
-const MasterLayoutContainer = styled.div`
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-`;
-
-const PanelRightContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-`;

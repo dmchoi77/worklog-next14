@@ -3,7 +3,9 @@ import { DefaultOptions, QueryClient, QueryClientConfig, defaultShouldDehydrateQ
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
-      queries: {},
+      queries: {
+        staleTime: 3000,
+      },
       dehydrate: {
         // include pending queries in dehydration
         shouldDehydrateQuery: (query: any) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
